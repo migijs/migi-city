@@ -22,24 +22,11 @@
   ],
   "author": "army8735",
   "license": "MIT",
-  "config": {
-    "blanket": {
-      "pattern": [
-        "migi-city/build"
-      ]
-    }
-  },
   "dependencies": {
     "migi": "~0.6.0"
   },
   "devDependencies": {
-    "blanket": "~1.1.7",
-    "coveralls": "~2.11.2",
-    "expect.js": "~0.3.1",
-    "mocha": "~2.2.5",
-    "mocha-lcov-reporter": "~0.0.2",
     "nightwatch": "~0.7.11",
-    "through2": "~2.0.0",
     "migi-loader": "~0.6.0",
     "more-loader": "~0.1.2"
   },
@@ -52,7 +39,13 @@
     "output": [
       "./index.js"
     ],
-    "build": {}
+    "build": {
+      "autoprefixer": true,
+      "loader": {
+        ".jsx": "migi-loader?es5=true&lie=true",
+        ".less": "+more-loader?suffix=less&type=2+migi-loader?css=true$!-less"
+      }
+    }
   },
   "readmeFilename": "README.md"
 }
