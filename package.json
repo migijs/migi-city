@@ -1,0 +1,58 @@
+{
+  "name": "migi-city",
+  "version": "0.1.0",
+  "description": "A city WebComponent of migi",
+  "maintainers": [
+    {
+      "name": "army8735",
+      "email": "army8735@qq.com"
+    }
+  ],
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/migijs/migi-city.git"
+  },
+  "keywords": [
+    "migi",
+    "city",
+    "WebComponent"
+  ],
+  "author": "army8735",
+  "license": "MIT",
+  "config": {
+    "blanket": {
+      "pattern": [
+        "migi-city/build"
+      ]
+    }
+  },
+  "dependencies": {
+    "migi": "~0.6.0"
+  },
+  "devDependencies": {
+    "blanket": "~1.1.7",
+    "coveralls": "~2.11.2",
+    "expect.js": "~0.3.1",
+    "mocha": "~2.2.5",
+    "mocha-lcov-reporter": "~0.0.2",
+    "nightwatch": "~0.7.11",
+    "through2": "~2.0.0",
+    "migi-loader": "~0.6.0",
+    "more-loader": "~0.1.2"
+  },
+  "main": "./index",
+  "engines": {
+    "node": ">= 0.4.2"
+  },
+  "spm": {
+    "main": "./index.js",
+    "output": [
+      "./index.js"
+    ],
+    "build": {}
+  },
+  "readmeFilename": "README.md"
+}
