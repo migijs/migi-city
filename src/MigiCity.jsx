@@ -11,7 +11,7 @@ class MigiCity extends migi.CacheComponent {
       var country = selects[2];
       province.bridge(city, 'value', 'list', function(d) {
         for(var i = 0, len = this.list.length; i < len; i++) {
-          if(this.list[i].name == d) {
+          if(this.list[i].name == d.name) {
             return this.list[i].citys;
           }
         }
@@ -19,7 +19,7 @@ class MigiCity extends migi.CacheComponent {
       });
       city.bridge(country, 'value', 'list', function(d) {
         for(var i = 0, len = this.list.length; i < len; i++) {
-          if(this.list[i].name == d) {
+          if(this.list[i].name == d.name) {
             return this.list[i].countys;
           }
         }
