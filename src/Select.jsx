@@ -1,17 +1,18 @@
-//var style = require('./style.cssx');
+var style = require('./style.cssx');console.log(style)
 
-console.log(style);
-
-class Select extends migi.Component {
+class Select extends migi.CacheComponent {
   constructor(...data) {
     super(...data);
     var self = this;
-    self._list = [];
-    self._value = '';
+    self._list = data[0].list || [];
+    if(self._list[0]) {
+      self._value = self._list[0];
+    }
     self._show = false;
+    self.style = style;
     self.on(migi.Event.DOM, function() {
       if(migi.browser.lie && document.body.attachEvent) {
-        document.body.attachEvent('onclick', function(e) {
+        window.attachEvent('onclick', function(e) {
           e = e || window.event;
           if(e.srcElement != self.$.element) {
             self.$.show = false;
@@ -19,7 +20,7 @@ class Select extends migi.Component {
         });
       }
       else {
-        document.body.addEventListener('click', function(e) {
+        window.addEventListener('click', function(e) {
           if(e.target != self.element) {
             self.$.show = false;
           }
@@ -33,7 +34,7 @@ class Select extends migi.Component {
   set list(v) {
     this._list = v;
     if(v.length) {
-      this.value = v[0].name;
+      this.value = v[0];
     }
     else {
       this.value = '';
@@ -44,19 +45,9 @@ class Select extends migi.Component {
   }
   set show(v) {
     this._show = v;
-    if(v) {
-      var cur = this.element.querySelector('.cur');
-      if(cur) {
-        cur.className = '';
-      }
-      cur = this.element.querySelector('li[title="' + this.value + '"]');
-      if(cur) {
-        cur.className = 'cur';
-      }
-    }
   }
   set value(v) {
-    this._value = v;
+    this._value = v || {};
   }
   get value(list) {
     return this._value;
@@ -64,23 +55,15 @@ class Select extends migi.Component {
   handleClick(e) {
     this.show = !this.show;
     if(e.target.tagName == 'LI') {
-      this.value = e.target.innerHTML;
+      var index = e.target.getAttribute('index');
+      this.value = this.list[index];
     }
-    this.emit('show');
-  }
-  handlerOver(e) {
-    if(e.target.tagName == 'LI' && e.target.className != 'cur') {
-      var cur = this.element.querySelector('.cur');
-      if(cur) {
-        cur.className = '';
-      }
-      e.target.className = 'cur';
-    }
+    this.emit('click');
   }
   render() {
     return (
-      <div class={ this.show ? 'select show' : 'select' } onClick={ this.handleClick }>
-        <input type="hidden" value={ this.value }/>
+      <div class={ this.show ? 'select show' : 'select' } onClick={ this.handleClick } style={ this.props.style }>
+        <input type="hidden" value={ this.value.value } name={ this.props.name }/>
         <div class="place">
           {
             this.list.map(function(item) {
@@ -88,12 +71,12 @@ class Select extends migi.Component {
             })
           }
         </div>
-        <strong>{ this.value || '&nbsp;' }</strong>
+        <strong>{ this.value.name || '&nbsp;' }</strong>
         <b></b>
-        <ul class={ this.show ? 'c show' : 'c' } onMouseOver={ this.handlerOver }>
+        <ul class={ this.show ? 'c show' : 'c' }>
           {
-            this.list.map(function(item) {
-              return <li title={ item.name }>{ item.name }</li>;
+            this.list.map(function(item, i) {
+              return <li title={ item.name } index={ i }>{ item.name }</li>;
             })
           }
         </ul>

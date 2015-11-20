@@ -23,13 +23,14 @@
   "author": "army8735",
   "license": "MIT",
   "dependencies": {
-    "migi": "~0.6.1",
+    "migi": "~0.6.4",
     "es5-shim": "*",
     "es6-shim": "~0.32.0"
   },
   "devDependencies": {
     "nightwatch": "~0.8.6",
-    "migi-loader": "~0.6.0",
+    "migi-loader": "~0.6.1",
+    "jaw-loader": "~0.6.0",
     "more-loader": "~0.1.2"
   },
   "main": "./index",
@@ -37,16 +38,16 @@
     "node": ">= 0.4.2"
   },
   "spm": {
-    "main": "./MigiCity.jsx",
+    "main": "./src/MigiCity.jsx",
     "output": [
       "./src/MigiCity.jsx",
-      "./src/style.cssx"
+      "./demo/index.jsx"
     ],
     "build": {
       "autoprefixer": true,
       "loader": {
         ".jsx": "migi-loader?es5=true&lie=true",
-        ".cssx": "migi-loader?css=true"
+        ".cssx": "jaw-loader"
       }
     }
   },

@@ -9,9 +9,13 @@
   height:20px;
   line-height:20px;
   cursor:default;
+  -webkit-transition:border-color 0.1s;
 }
 .select.show{
+  border-color:#999;
   z-index:9999;
+  border-bottom-left-radius:0;
+  border-bottom-right-radius:0;
 }
 strong{
   display:block;
@@ -24,6 +28,10 @@ b{
   right:5px;
   border:5px solid transparent;
   border-top-color:#333;
+  -webkit-transition:border-top-color 0.1s;
+}
+.show b{
+  border-top-color:#39F;
 }
 .c{
   position:absolute;
@@ -34,7 +42,8 @@ b{
   padding:0;
   list-style:none;
   display:none;
-  border:1px solid #CCC;
+  border:1px solid #999;
+  border-top-color:#CCC;
   background:#FFF;
   overflow:hidden;
 }
@@ -42,6 +51,7 @@ b{
   padding:0 20px 0 5px;
   word-break:keep-all;
   white-space:nowrap;
+  -webkit-transition:background 0.1s, color 0.1s;
 }
 .c li:hover{
   background:#39F;
