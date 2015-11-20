@@ -1,4 +1,4 @@
-var style = require('./style.cssx');console.log(style)
+var style = require('./style.cssx');
 
 class Select extends migi.CacheComponent {
   constructor(...data) {
