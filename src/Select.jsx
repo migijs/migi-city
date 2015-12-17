@@ -4,7 +4,7 @@ class Select extends migi.CacheComponent {
   constructor(...data) {
     super(...data);
     var self = this;
-    self._list = data[0].list || [];
+    self._list = self.props.list || [];
     if(self._list[0]) {
       self._value = self._list[0];
     }
@@ -47,10 +47,10 @@ class Select extends migi.CacheComponent {
     this._show = v;
   }
   set value(v) {
-    this._value = v || {};
+    this._value = v;
   }
   get value(list) {
-    return this._value;
+    return this._value || {};
   }
   handleClick(e) {
     this.show = !this.show;

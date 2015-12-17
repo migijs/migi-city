@@ -1,16 +1,8 @@
 test-firefox:
 	@nightwatch --filter test.js
 
-test-chrome:
-	@nightwatch --filter test.js --env chrome
 
-test-ie:
-	@nightwatch --filter test.js --env ie
-
-test-firefox-lie:
-	@nightwatch --filter test-lie.js
-
-test: build-test test-mocha test-firefox
+test: test-firefox
 
 test-mocha:
 	@mocha --timeout 5000 tests/testm.js -R spec

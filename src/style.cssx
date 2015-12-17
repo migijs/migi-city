@@ -11,6 +11,9 @@
   cursor:default;
   -webkit-transition:border-color 0.1s;
 }
+.select:hover b{
+  border-top-color:#39F;
+}
 .select.show{
   border-color:#999;
   z-index:9999;
